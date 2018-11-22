@@ -1,0 +1,4 @@
+#! /bin/bash
+
+cat log.txt | cut -f1,11 -d" " | grep '"-"' | sort | uniq -c | sort -rn | awk '{sum+=$1; NUMBERS[$2]=$1; LINK[$2]=$2;} END {for(i in LINK) print i, "-", NUMBERS[i], "-", int(NUMBERS[i]/sum*100) ,"%"}' | sort "-k3" -rn | head -n 10
+
